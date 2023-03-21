@@ -1,6 +1,6 @@
 import React from 'react';
 
-const About = () => {
+const About: React.FC = (): JSX.Element => {
 	return (
 		<div className="container">
 			<h5>About Us</h5>

@@ -2,10 +2,10 @@ import React from 'react';
 import BookContextProvider from '../../contexts/BookContext';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Navbar, About, Contact } from '../../components';
-import { BookDashboard } from '../../containers';
+import { BookDashboard } from '..';
 import './BookStore.css';
 
-const BookStore = () => {
+const BookStore: React.FC = (): JSX.Element => {
 	return (
 		<BookContextProvider>
 			<BrowserRouter>

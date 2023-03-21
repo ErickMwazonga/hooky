@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, HtmlHTMLAttributes, useState } from 'react';
+import { IUser } from '../types';
 
-const AddUserForm = ({ addUser }) => {
-	const initialFormState = { id: null, name: '', username: '' };
-	const [user, setUser] = useState(initialFormState);
+interface IProps {
+	addUser: (user: IUser) => void;
+}
 
-	const handleInputChange = (event) => {
+const AddUserForm: React.FC<IProps> = ({ addUser }): JSX.Element => {
+	const [user, setUser] = useState<IUser>({} as IUser);
+
+	const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (
+		event: any
+	) => {
 		const { name, value } = event.target;
 		setUser({ ...user, [name]: value });
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		if (!user.name || !user.username) return;
 
 		addUser(user);
-		setUser(initialFormState);
+		setUser({} as IUser);
 	};
 
 	return (

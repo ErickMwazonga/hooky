@@ -2,34 +2,31 @@ import React, { useState } from 'react';
 import { users as data } from '../../data';
 import { UserTable, AddUserForm, EditUserForm } from '../../components';
 import './User.css';
+import { IUser } from '../../types';
 
-function App() {
-	const [users, setUsers] = useState(data);
-	const [editing, setEditing] = useState(false);
-	const [currentUser, setCurrentUser] = useState({
-		id: null,
-		name: '',
-		username: '',
-	});
+const App: React.FC = (): JSX.Element => {
+	const [users, setUsers] = useState<IUser[]>(data);
+	const [editing, setEditing] = useState<boolean>(false);
+	const [currentUser, setCurrentUser] = useState<IUser>({} as IUser);
 
-	const addUser = (user) => {
+	const addUser = (user: IUser) => {
 		user.id = users.length + 1;
 		setUsers([...users, user]);
 	};
 
-	const deleteUser = (id) => {
+	const deleteUser = (id: number) => {
 		setEditing(false);
 		setUsers(users.filter((user) => user.id !== id));
 	};
 
-	const editRow = (user) => {
+	const editRow = (user: IUser) => {
 		const { id, name, username } = user;
 
 		setEditing(true);
 		setCurrentUser({ id, name, username });
 	};
 
-	const updateUser = (id, updatedUser) => {
+	const updateUser = (id: number, updatedUser: IUser) => {
 		setEditing(false);
 		setUsers(users.map((user) => (user.id === id ? updatedUser : user)));
 	};
@@ -68,6 +65,6 @@ function App() {
 			</div>
 		</div>
 	);
-}
+};
 
 export default App;

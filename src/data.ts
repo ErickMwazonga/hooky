@@ -1,4 +1,4 @@
-import { ITodo } from './types';
+import { ITodo, IUser } from './types';
 
 const todos: ITodo[] = [
 	{
@@ -15,7 +15,7 @@ const todos: ITodo[] = [
 	},
 ];
 
-const users = [
+const users: IUser[] = [
 	{
 		id: 1,
 		name: 'Tania',
